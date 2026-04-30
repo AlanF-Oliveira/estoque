@@ -25,4 +25,10 @@ public class ProdutoService {
         return produtoMapper.paraDTO(entitySalva);
     }
 
+    public ProdutoResponse buscarProdutoPorId(Long id){
+        Produto produtoEntity = produtoRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        return  produtoMapper.paraDTO(produtoEntity);
+    }
+
 }
