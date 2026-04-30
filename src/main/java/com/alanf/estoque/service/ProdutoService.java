@@ -44,4 +44,17 @@ public class ProdutoService {
        produtoRepository.deleteById(id);
     }
 
+    public ProdutoResponse atualizarProduto(Long id, ProdutoRequest request){
+        Produto produtoEntity = produtoRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+        produtoEntity.setNome(request.getNome());
+        produtoEntity.setDescricao(request.getDescricao());
+        Categoria categoria = categoriaRepository.findById(request.getCategoriaId())
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+        produtoEntity.setCategoria(categoria);
+        produtoEntity.setPreco(request.getPreco());
+        Produto produtoEntitySalva = produtoRepository.save(produtoEntity);
+        return produtoMapper.paraDTO(produtoEntitySalva);
+    }
+
 }
