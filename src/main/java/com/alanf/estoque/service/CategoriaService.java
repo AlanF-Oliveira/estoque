@@ -18,15 +18,15 @@ public class CategoriaService {
 
     public CategoriaResponse salvarCategoria(CategoriaRequest request){
 
-        Categoria entity = categoriaMapper.paraEntity(request);
-        Categoria entityReturn = categoriaRepository.save(entity);
-        return categoriaMapper.paraDTO(entityReturn);
+        Categoria categoriaEntity = categoriaMapper.paraEntity(request);
+        Categoria entitySalva = categoriaRepository.save(categoriaEntity);
+        return categoriaMapper.paraDTO(entitySalva);
     }
 
     public CategoriaResponse buscarCategoriaPorId(Long id){
-        Categoria entity = categoriaRepository.findById(id)
+        Categoria categoriaEntity = categoriaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("ID não encontrado "));
-        return categoriaMapper.paraDTO(entity);
+        return categoriaMapper.paraDTO(categoriaEntity);
     }
 
     public List<CategoriaResponse> listaTodasAsCategorias(){
@@ -41,10 +41,10 @@ public class CategoriaService {
     }
 
     public CategoriaResponse atualizarCategoriaPorId(Long id, CategoriaRequest request){
-        Categoria entity = categoriaRepository.findById(id)
+        Categoria categoriaEntity = categoriaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("ID não encontrado"));
-        entity.setNome(request.getNome());
-        Categoria entitySalva = categoriaRepository.save(entity);
+        categoriaEntity.setNome(request.getNome());
+        Categoria entitySalva = categoriaRepository.save(categoriaEntity);
         return categoriaMapper.paraDTO(entitySalva);
     }
 
