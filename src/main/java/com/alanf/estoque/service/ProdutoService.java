@@ -37,4 +37,11 @@ public class ProdutoService {
         return produtoMapper.paraListaDTO(produtoRepository.findAll());
     }
 
+    public void deletarProdutoPorId(Long id){
+       if (!produtoRepository.existsById(id)){
+           throw new RuntimeException("Produto não encontrado");
+       }
+       produtoRepository.deleteById(id);
+    }
+
 }
