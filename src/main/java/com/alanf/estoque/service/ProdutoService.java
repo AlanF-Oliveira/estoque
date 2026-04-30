@@ -10,6 +10,8 @@ import com.alanf.estoque.repository.ProdutoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProdutoService {
@@ -29,6 +31,10 @@ public class ProdutoService {
         Produto produtoEntity = produtoRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
         return  produtoMapper.paraDTO(produtoEntity);
+    }
+
+    public List<ProdutoResponse> listarTodosOsProdutos(){
+        return produtoMapper.paraListaDTO(produtoRepository.findAll());
     }
 
 }
