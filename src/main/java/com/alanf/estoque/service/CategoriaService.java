@@ -5,13 +5,13 @@ import com.alanf.estoque.dto.categoria.CategoriaResponse;
 import com.alanf.estoque.entity.Categoria;
 import com.alanf.estoque.mapper.CategoriaMapper;
 import com.alanf.estoque.repository.CategoriaRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
     private final CategoriaMapper categoriaMapper;
