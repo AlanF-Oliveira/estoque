@@ -1,6 +1,5 @@
 package com.alanf.estoque.mapper;
 
-import com.alanf.estoque.dto.categoria.CategoriaResponse;
 import com.alanf.estoque.dto.produto.ProdutoRequest;
 import com.alanf.estoque.dto.produto.ProdutoResponse;
 import com.alanf.estoque.entity.Categoria;
@@ -13,7 +12,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProdutoMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "categoria", source = "categoria")
+    @Mapping(target = "nome", source = "request.nome")
     Produto paraEntity(ProdutoRequest request, Categoria categoria);
 
     ProdutoResponse paraDTO(Produto produto);
