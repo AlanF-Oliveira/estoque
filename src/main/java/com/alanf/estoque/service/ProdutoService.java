@@ -7,13 +7,13 @@ import com.alanf.estoque.entity.Produto;
 import com.alanf.estoque.mapper.ProdutoMapper;
 import com.alanf.estoque.repository.CategoriaRepository;
 import com.alanf.estoque.repository.ProdutoRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProdutoService {
     private final ProdutoRepository produtoRepository;
     private final CategoriaRepository categoriaRepository;
