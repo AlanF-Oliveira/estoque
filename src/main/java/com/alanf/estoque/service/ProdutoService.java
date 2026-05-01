@@ -29,7 +29,7 @@ public class ProdutoService {
 
     public ProdutoResponse buscarProdutoPorId(Long id){
         Produto produtoEntity = produtoRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
+                    .orElseThrow(()-> new RuntimeException("Produto não encontrado"));
         return  produtoMapper.paraDTO(produtoEntity);
     }
 
