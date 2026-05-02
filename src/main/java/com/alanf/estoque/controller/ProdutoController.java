@@ -3,6 +3,7 @@ package com.alanf.estoque.controller;
 import com.alanf.estoque.dto.produto.ProdutoRequest;
 import com.alanf.estoque.dto.produto.ProdutoResponse;
 import com.alanf.estoque.service.ProdutoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ProdutoController {
     private final ProdutoService produtoService;
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> salvaProduto(@RequestBody ProdutoRequest request){
+    public ResponseEntity<ProdutoResponse> salvaProduto(@Valid @RequestBody ProdutoRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvarProduto(request));
     }
 
@@ -38,7 +39,7 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> atualizProdutoPorId(@PathVariable Long id, @RequestBody ProdutoRequest request){
+    public ResponseEntity<ProdutoResponse> atualizProdutoPorId(@Valid @PathVariable Long id, @RequestBody ProdutoRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.atualizarProduto(id, request));
     }
 }
