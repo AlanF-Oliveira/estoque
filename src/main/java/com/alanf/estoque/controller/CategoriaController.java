@@ -3,6 +3,7 @@ package com.alanf.estoque.controller;
 import com.alanf.estoque.dto.categoria.CategoriaRequest;
 import com.alanf.estoque.dto.categoria.CategoriaResponse;
 import com.alanf.estoque.service.CategoriaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<CategoriaResponse> salvaCategoria(@RequestBody CategoriaRequest request) {
+    public ResponseEntity<CategoriaResponse> salvaCategoria(@Valid @RequestBody CategoriaRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body((categoriaService.salvarCategoria(request)));
     }
 
@@ -38,7 +39,7 @@ public class CategoriaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaResponse> atualizarCategoria(@PathVariable Long id, @RequestBody CategoriaRequest request){
+    public ResponseEntity<CategoriaResponse> atualizarCategoria(@Valid @PathVariable Long id, @RequestBody CategoriaRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(categoriaService.atualizarCategoriaPorId(id, request));
     }
 
