@@ -24,7 +24,7 @@ public class ProdutoController {
     @PostMapping
     @Operation(summary = "Cadastra um novo produto")
     @ApiResponse(responseCode = "201", description = "Produto salvo com sucesso")
-    @ApiResponse(responseCode = "400", description = "Falha na atualizacao")
+    @ApiResponse(responseCode = "400", description = "Falha na criacão")
     public ResponseEntity<ProdutoResponse> salvaProduto(@Valid @RequestBody ProdutoRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvarProduto(request));
     }
